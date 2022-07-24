@@ -7,8 +7,8 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-function App() {
-
+function App(request) {
+console.log(request,"request coming ")
  
 
   return (

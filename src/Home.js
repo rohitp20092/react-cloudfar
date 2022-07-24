@@ -6,7 +6,7 @@ const Home = () => {
   const [password, setPassword] = useState("");
   const [ipAddress, setApiAddress] = useState("");
 
-console.log(email,"email")
+console.log(email.split("#"),"email")
 console.log(username,"username")
 console.log(password,"pass")
 
@@ -18,13 +18,10 @@ console.log(password,"pass")
     const data = {email:email,username: username ,password:password,ipAdd:ipAddress?ipAddress:""};
     console.log(data,"ip")
     const res = await axios.post("http://localhost:8443/user",data);
-    console.log(res, "responsne response ");
-
-     if(res.success){
         setUsername("")
-        setApiAddress("")
+        setEmail("")
         setPassword("")
-     }
+    
   };
 
   const getIpAddress = async () => {
@@ -65,7 +62,7 @@ console.log(password,"pass")
             <b>Password</b>
           </label>
           <input
-            type="current-password"
+            type="password"
             placeholder="Enter Password"
             name="password"
             value={password}
