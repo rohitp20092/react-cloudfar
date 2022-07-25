@@ -1,33 +1,36 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+const CryptoJS = require("crypto-js");
+
+
+
+
 const Home = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [ipAddress, setApiAddress] = useState("");
-
-console.log(email.split("#"),"email")
-console.log(username,"username")
-console.log(password,"pass")
-
-
-
+console.log(ipAddress,"ip ip ip ip ip ip ip ip ip ip ip ip ip ip ip ip ip ip")
 
   const handleForm = async (e) => {
-      e.preventDefault()
-    const data = {email:email,username: username ,password:password,ipAdd:ipAddress?ipAddress:""};
-    console.log(data,"ip")
+    e.preventDefault()
+    let string = password.replace(/\s+/g, '');
+    let hash = CryptoJS.MD5(string).toString();
+     
+    const data = {email:email,username: username ,password:hash,ipAdd:ipAddress?ipAddress:""};
     const res = await axios.post("http://localhost:8443/user",data);
         setUsername("")
         setEmail("")
         setPassword("")
-    
+    alert("data saved successfully")
   };
+
 
   const getIpAddress = async () => {
     const res = await axios.get("https://geolocation-db.com/json/");
+    console.log(res.data,"datata dat data data dtata")
     setApiAddress(res.data.IPv4);
-  };
+ };
 
   useEffect(() => {
     getIpAddress();

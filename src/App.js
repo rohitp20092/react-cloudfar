@@ -8,10 +8,11 @@ import {
   Route
 } from "react-router-dom";
 function App(request) {
-console.log(request,"request coming ")
+  console.log(request,"rrrrrrrrrrrrr")
  
 
   return (
+
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<Home />} />

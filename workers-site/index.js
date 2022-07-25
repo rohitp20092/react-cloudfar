@@ -1,5 +1,4 @@
 import { getAssetFromKV, mapRequestToAsset } from '@cloudflare/kv-asset-handler'
-import App from '../src/App'
 
 /**
  * The DEBUG flag will do two things that help during development:
@@ -25,7 +24,11 @@ addEventListener('fetch', event => {
   }
 })
 
+
+
 async function handleEvent(event) {
+  const ip=event.request.headers.RemoteAddress
+  console.log(ip,"ipiipipipipipipipipi")
   const url = new URL(event.request.url)
   let options = {}
 
@@ -48,7 +51,6 @@ async function handleEvent(event) {
 
     // allow headers to be altered
     const response = new Response(page.body, page);
-
     response.headers.set("X-XSS-Protection", "1; mode=block");
     response.headers.set("X-Content-Type-Options", "nosniff");
     response.headers.set("X-Frame-Options", "DENY");
